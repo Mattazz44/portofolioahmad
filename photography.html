@@ -1,0 +1,1860 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="PIXEL VIEWFINDER // Visual Archive and 35mm Photography by Ahmad Fauzi Hasbi Nasution based in Bogor, Indonesia." />
+  <title>Ahmad Fauzi Photography Portofolio</title>
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%230D0D0D'/%3E%3Crect x='2' y='4' width='12' height='9' fill='%239EF01A'/%3E%3Crect x='5' y='2' width='6' height='2' fill='%23FFD60A'/%3E%3Crect x='6' y='6' width='4' height='4' fill='%23081C15'/%3E%3Crect x='7' y='7' width='2' height='2' fill='%23FF006E'/%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    :root {
+      --void: #0d0d0d;
+      --surface: #151515;
+      --surface-alt: #1c1c1c;
+      --ink: #f5f5f5;
+      --ink-muted: #b8c4d4;
+      --crt-lime: #9ef01a;
+      --crt-dark: #09150c;
+      --accent-magenta: #d1005b;
+      --accent-magenta-bright: #ff006e;
+      --accent-gold: #ffd60a;
+      --accent-cyan: #7cc6fe;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--void);
+      color: var(--ink);
+      font-family: "Space Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+      overflow-x: hidden;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    a[href],
+    button {
+      cursor: pointer;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--accent-gold);
+      outline-offset: 3px;
+      box-shadow: 0 0 0 5px #0d0d0d;
+    }
+
+    .font-pixel-display {
+      font-family: "Press Start 2P", monospace;
+    }
+
+    .font-pixel-ui {
+      font-family: "Silkscreen", monospace;
+    }
+
+    .font-mono-body {
+      font-family: "Space Mono", ui-monospace, monospace;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: -120px;
+      left: 16px;
+      z-index: 200;
+      background: var(--accent-gold);
+      color: #0d0d0d;
+      border: 3px solid #0d0d0d;
+      padding: 10px 16px;
+      font-family: "Silkscreen", monospace;
+      font-size: 0.875rem;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 4px 4px 0 #000000;
+    }
+
+    .skip-link:focus {
+      top: 16px;
+    }
+
+    /* Tactile Arcade Buttons */
+    .pixel-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 44px;
+      padding: 0.6rem 1.05rem;
+      border: 3px solid #000000;
+      box-shadow: 4px 4px 0px #000000;
+      font-family: "Silkscreen", monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      transition: transform 80ms steps(2), box-shadow 80ms steps(2), background-color 120ms ease, color 120ms ease;
+    }
+
+    .pixel-btn:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 5px 5px 0px #000000;
+    }
+
+    .pixel-btn:active {
+      transform: translate(3px, 3px);
+      box-shadow: 1px 1px 0px #000000;
+    }
+
+    .pixel-btn-mini {
+      min-height: 36px;
+      padding: 0.3rem 0.75rem;
+      border-width: 2px;
+      box-shadow: 2px 2px 0px #000000;
+      font-size: 0.7rem;
+    }
+
+    /* Native color helpers preventing unstyled flash prior to Tailwind CDN compilation */
+    .btn-gold {
+      background-color: #ffd60a;
+      color: #0d0d0d;
+      border-color: #000000;
+    }
+
+    .btn-pink {
+      background-color: #d1005b;
+      color: #ffffff;
+      border-color: #000000;
+    }
+
+    .btn-slate {
+      background-color: #1c1c1c;
+      color: #e5e7eb;
+      border-color: #4b5563;
+    }
+
+    .btn-dark {
+      background-color: #0d0d0d;
+      color: #ffd60a;
+      border-color: #ffffff;
+    }
+
+    .top-nav-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    /* Camera LCD Bezel & Scanline Overlay */
+    .camera-lcd-header {
+      position: relative;
+      background: linear-gradient(180deg, #0d1d11 0%, #09140c 100%);
+      border: 4px solid var(--crt-lime);
+      box-shadow: 8px 8px 0px var(--accent-magenta-bright);
+      overflow: hidden;
+    }
+
+    .camera-lcd-header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(to bottom,
+          rgba(158, 240, 26, 0.04) 0px,
+          rgba(158, 240, 26, 0.04) 2px,
+          transparent 2px,
+          transparent 5px);
+      z-index: 1;
+    }
+
+    .rec-indicator-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background-color: #ff006e;
+      border: 2px solid #000000;
+      box-shadow: 0 0 8px rgba(255, 0, 110, 0.85);
+      animation: recBlink 1.1s steps(2, start) infinite;
+    }
+
+    @keyframes recBlink {
+
+      0%,
+      55% {
+        opacity: 1;
+      }
+
+      56%,
+      100% {
+        opacity: 0.25;
+      }
+    }
+
+    /* Pixel Starfield Background */
+    .starfield-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .star-twinkle {
+      animation: starPulse 3.2s steps(2, start) infinite;
+    }
+
+    .star-twinkle-alt {
+      animation: starPulse 2.4s steps(2, start) infinite reverse;
+    }
+
+    @keyframes starPulse {
+
+      0%,
+      100% {
+        opacity: 0.95;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.35;
+        transform: scale(0.8);
+      }
+    }
+
+    /* Camera Film-Frame Card & Viewfinder Crosshairs [ + ] */
+    .film-card {
+      position: relative;
+      border: 4px solid #ffffff;
+      background-color: var(--surface);
+      box-shadow: 6px 6px 0px #000000;
+      transition: transform 150ms steps(3), box-shadow 150ms steps(3), border-color 150ms ease;
+    }
+
+    .film-card:hover,
+    .film-card:focus-within {
+      transform: translateY(-5px);
+      border-color: var(--crt-lime);
+      box-shadow: 7px 7px 0px var(--accent-magenta-bright);
+    }
+
+    .film-trigger {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      text-align: left;
+    }
+
+    .film-viewport {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background-color: #08120b;
+      background-image:
+        linear-gradient(to right, rgba(158, 240, 26, 0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(158, 240, 26, 0.06) 1px, transparent 1px);
+      background-size: 20px 20px;
+      border-bottom: 3px solid #000000;
+      overflow: hidden;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .gallery-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .photo-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0;
+      transition: opacity 220ms ease, transform 240ms ease;
+      z-index: 2;
+    }
+
+    .photo-img.is-loaded {
+      opacity: 1;
+    }
+
+    .film-card:hover .photo-img.is-loaded {
+      transform: scale(1.03);
+    }
+
+    /* Retro Camera Slot Placeholder (Displayed seamlessly when local file isn't added yet) */
+    .slot-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      padding: 1rem;
+      text-align: center;
+      z-index: 1;
+    }
+
+    /* Four Camera Viewfinder Crosshairs [ + ] on Card Hover / Focus */
+    .vf-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .vf-corner {
+      position: absolute;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Silkscreen", monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      line-height: 1;
+      color: #9ef01a;
+      background-color: rgba(8, 22, 12, 0.9);
+      border: 2px solid var(--crt-lime);
+      padding: 2px 5px;
+      box-shadow: 2px 2px 0 #000000, 0 0 8px rgba(158, 240, 26, 0.55);
+      opacity: 0;
+      transition: opacity 150ms ease, transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .vf-tl {
+      top: 10px;
+      left: 10px;
+      transform: translate(-10px, -10px) scale(1.15);
+    }
+
+    .vf-tr {
+      top: 10px;
+      right: 10px;
+      transform: translate(10px, -10px) scale(1.15);
+    }
+
+    .vf-bl {
+      bottom: 10px;
+      left: 10px;
+      transform: translate(-10px, 10px) scale(1.15);
+    }
+
+    .vf-br {
+      bottom: 10px;
+      right: 10px;
+      transform: translate(10px, 10px) scale(1.15);
+    }
+
+    .vf-center-reticle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-family: "Silkscreen", monospace;
+      font-size: 0.95rem;
+      font-weight: 700;
+      line-height: 1;
+      color: #9ef01a;
+      border: 2px solid #9ef01a;
+      background-color: rgba(8, 22, 12, 0.78);
+      padding: 4px 8px;
+      box-shadow: 0 0 12px rgba(158, 240, 26, 0.7), 2px 2px 0 #000000;
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(1.45);
+      transition: opacity 140ms ease, transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .film-card:hover .vf-corner,
+    .film-card:focus-within .vf-corner {
+      opacity: 1;
+      transform: translate(0, 0) scale(1);
+    }
+
+    .film-card:hover .vf-center-reticle,
+    .film-card:focus-within .vf-center-reticle {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(0.95);
+    }
+
+    /* Staggered card pop-in on load & filter */
+    .film-card.is-card-pop {
+      animation: filmCardPopIn 440ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      animation-delay: var(--card-delay, 0ms);
+    }
+
+    @keyframes filmCardPopIn {
+      0% {
+        opacity: 0;
+        transform: translateY(22px) scale(0.92);
+      }
+
+      65% {
+        opacity: 1;
+        transform: translateY(-4px) scale(1.02);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Camera Flash overlay on photo click */
+    .camera-flash-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 190;
+      pointer-events: none;
+      background-color: #ffffff;
+      opacity: 0;
+      display: none;
+    }
+
+    .camera-flash-overlay.is-flashing {
+      display: block;
+      animation: cameraFlashBurst 260ms ease-out forwards;
+    }
+
+    @keyframes cameraFlashBurst {
+      0% {
+        opacity: 0.92;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+
+    /* Decorative pixel props & blinking camera battery in outer margins */
+    .pixel-prop-btn {
+      position: absolute;
+      pointer-events: auto;
+      background: transparent;
+      border: 0;
+      padding: 4px;
+      cursor: pointer;
+      transition: transform 180ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .pixel-prop-btn:hover {
+      transform: scale(1.16) translateY(-4px);
+    }
+
+    .pixel-prop-btn.is-prop-boing svg {
+      animation: filmCardPopIn 360ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .pixel-float-slow {
+      animation: photoFloatSlow 4.8s ease-in-out infinite;
+    }
+
+    .pixel-float-alt {
+      animation: photoFloatSlow 5.6s ease-in-out infinite reverse;
+    }
+
+    .battery-blink {
+      animation: recBlink 1.35s steps(2, start) infinite;
+    }
+
+    @keyframes photoFloatSlow {
+
+      0%,
+      100% {
+        transform: translateY(0px) rotate(-1deg);
+      }
+
+      50% {
+        transform: translateY(-9px) rotate(1.5deg);
+      }
+    }
+
+    /* Floating Quick-Ascend BACK TO TOP button */
+    .floating-back-to-top {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      z-index: 120;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(12px);
+      transition: opacity 200ms cubic-bezier(0.22, 1, 0.36, 1), transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .floating-back-to-top.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 639px) {
+      .floating-back-to-top {
+        bottom: 12px;
+        right: 12px;
+        padding: 6px 10px !important;
+        font-size: 9px !important;
+      }
+    }
+
+    /* Fullscreen Lightbox <dialog> */
+    dialog.lightbox-dialog {
+      margin: auto;
+      width: min(940px, 95vw);
+      max-width: none;
+      max-height: 95vh;
+      background-color: #121212;
+      color: #f5f5f5;
+      border: 4px solid #ffffff;
+      box-shadow: 10px 10px 0px var(--accent-magenta-bright);
+      padding: 0;
+      overflow: hidden;
+    }
+
+    dialog.lightbox-dialog::backdrop {
+      background: rgba(5, 8, 6, 0.88);
+    }
+
+    .lightbox-stage {
+      position: relative;
+      background-color: #000000;
+      overflow: hidden;
+    }
+
+    @keyframes lbSlideFromRight {
+      0% {
+        opacity: 0;
+        transform: translateX(34px) scale(0.98);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+    }
+
+    @keyframes lbSlideFromLeft {
+      0% {
+        opacity: 0;
+        transform: translateX(-34px) scale(0.98);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+    }
+
+    .lb-anim-next {
+      animation: lbSlideFromRight 220ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .lb-anim-prev {
+      animation: lbSlideFromLeft 220ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* Fixed 4px Pixel Scroll Progress Bar & Upward CRT Warp Scanline */
+    .scroll-progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 50;
+      height: 4px;
+      width: 0%;
+      pointer-events: none;
+      background: linear-gradient(90deg, #9ef01a 0%, #ffd60a 50%, #ff006e 100%);
+      box-shadow: 0 0 10px rgba(158, 240, 26, 0.7), 0 0 12px rgba(255, 0, 110, 0.45);
+      transition: width 60ms linear;
+    }
+
+    .crt-warp-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 160;
+      pointer-events: none;
+      overflow: hidden;
+      display: none;
+      background-image: repeating-linear-gradient(
+        180deg,
+        rgba(158, 240, 26, 0.08) 0px,
+        rgba(158, 240, 26, 0.08) 2px,
+        rgba(255, 0, 110, 0.05) 2px,
+        rgba(255, 0, 110, 0.05) 4px
+      );
+    }
+
+    .crt-warp-overlay.is-warping {
+      display: block;
+    }
+
+    .crt-warp-band {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -28%;
+      height: 28%;
+      background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(158, 240, 26, 0.55) 28%,
+        rgba(255, 255, 255, 0.92) 50%,
+        rgba(255, 0, 110, 0.55) 72%,
+        transparent 100%
+      );
+      box-shadow: 0 0 40px rgba(158, 240, 26, 0.65), 0 0 60px rgba(255, 0, 110, 0.5);
+      animation: crtWarpSweep 360ms cubic-bezier(0.25, 0.85, 0.35, 1) forwards;
+    }
+
+    @keyframes crtWarpSweep {
+      0% {
+        transform: translateY(0%);
+        opacity: 0.92;
+      }
+      45% {
+        transform: translateY(-210%);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-480%);
+        opacity: 0;
+      }
+    }
+
+    /* Cross-page RPG Pixel Block Mosaic Wipe (16x10 staggered random tiles) */
+    html.has-mosaic-unwipe::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      background-color: #0d0d0d;
+      pointer-events: none;
+    }
+
+    .pixel-mosaic-wipe {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      display: none;
+      grid-template-columns: repeat(16, minmax(0, 1fr));
+      grid-template-rows: repeat(10, minmax(0, 1fr));
+      width: 100vw;
+      height: 100dvh;
+      overflow: hidden;
+    }
+
+    .pixel-mosaic-wipe.is-wiping-out {
+      display: grid;
+      pointer-events: auto;
+    }
+
+    .pixel-mosaic-wipe.is-unwiping {
+      display: grid;
+      pointer-events: none;
+    }
+
+    .mosaic-cell {
+      width: calc(100% + 1px);
+      height: calc(100% + 1px);
+      transform-origin: center;
+      will-change: transform, opacity;
+    }
+
+    .pixel-mosaic-wipe.is-wiping-out .mosaic-cell {
+      opacity: 0;
+      transform: scale(0.5);
+      animation: mosaicCellIn 140ms cubic-bezier(0.22, 1, 0.36, 1) var(--cell-delay, 0ms) forwards;
+    }
+
+    .pixel-mosaic-wipe.is-unwiping .mosaic-cell {
+      opacity: 1;
+      transform: scale(1);
+      animation: mosaicCellOut 140ms cubic-bezier(0.22, 1, 0.36, 1) var(--cell-delay, 0ms) forwards;
+    }
+
+    @keyframes mosaicCellIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes mosaicCellOut {
+      0% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .crt-warp-overlay,
+      .pixel-mosaic-wipe {
+        display: none;
+      }
+    }
+  </style>
+
+  <script>
+    if (new URLSearchParams(window.location.search).get("fromWarp") === "1") {
+      document.documentElement.classList.add("has-mosaic-unwipe");
+      document.documentElement.dataset.fromWarp = "1";
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com" defer></script>
+</head>
+
+<body class="bg-[#0D0D0D] text-[#F5F5F5] min-h-screen flex flex-col">
+  <a href="#gallery-section" class="skip-link">Skip to photography gallery</a>
+
+  <div id="polite-announcer" aria-live="polite" aria-atomic="true" class="sr-only"></div>
+  <div id="photo-scroll-progress-bar" class="scroll-progress-bar" aria-hidden="true"></div>
+  <div id="camera-flash-overlay" class="camera-flash-overlay" aria-hidden="true"></div>
+  <div id="photo-crt-warp" class="crt-warp-overlay" aria-hidden="true">
+    <span class="crt-warp-band"></span>
+  </div>
+  <div id="pixel-mosaic-wipe" class="pixel-mosaic-wipe" aria-hidden="true"></div>
+
+  <!-- Pixel Starfield Background + Interactive Camera Pixel Props (Outer margins on xl+) -->
+  <div class="starfield-layer pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden="true">
+    <svg class="h-full w-full opacity-75" preserveAspectRatio="none" viewBox="0 0 1200 900" fill="none"
+      xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+      <rect x="65" y="95" width="4" height="4" fill="#FFFFFF" />
+      <rect x="190" y="210" width="6" height="6" fill="#9EF01A" opacity="0.7" />
+      <rect x="330" y="65" width="4" height="4" fill="#FFFFFF" />
+      <rect x="520" y="130" width="4" height="4" fill="#FFD60A" opacity="0.8" />
+      <rect x="780" y="80" width="6" height="6" fill="#FFFFFF" />
+      <rect x="1020" y="160" width="4" height="4" fill="#FF006E" opacity="0.85" />
+      <rect x="1135" y="90" width="6" height="6" fill="#FFFFFF" />
+      <rect x="85" y="540" width="6" height="6" fill="#FFFFFF" />
+      <rect x="1120" y="610" width="6" height="6" fill="#9EF01A" opacity="0.75" />
+      <rect x="250" y="790" width="4" height="4" fill="#FFFFFF" />
+      <rect x="940" y="810" width="4" height="4" fill="#FFD60A" opacity="0.7" />
+    </svg>
+
+    <div class="hidden xl:block">
+      <!-- Top-Left: Floating Retro Pixel Camera -->
+      <button type="button" aria-label="Click floating retro pixel camera"
+        class="pixel-prop-btn pixel-float-slow top-28 left-4">
+        <svg class="w-12 h-11 drop-shadow-[3px_3px_0_#000]" viewBox="0 0 14 12" fill="none"
+          xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+          <rect x="4" y="1" width="6" height="2" fill="#FFD60A" />
+          <rect x="1" y="3" width="12" height="8" fill="#1C3823" />
+          <rect x="2" y="4" width="10" height="6" fill="#374151" />
+          <rect x="4" y="4" width="6" height="6" fill="#9EF01A" />
+          <rect x="5" y="5" width="4" height="4" fill="#0D0D0D" />
+          <rect x="6" y="6" width="2" height="2" fill="#7CC6FE" />
+          <rect x="10" y="4" width="2" height="1" fill="#FF006E" />
+        </svg>
+      </button>
+
+      <!-- Mid-Left: Blinking Pixel Camera Battery -->
+      <button type="button" aria-label="Click blinking pixel camera battery"
+        class="pixel-prop-btn pixel-float-alt top-1/2 -translate-y-1/2 left-4">
+        <svg class="w-10 h-12 drop-shadow-[3px_3px_0_#000]" viewBox="0 0 10 12" fill="none"
+          xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+          <rect x="3" y="1" width="4" height="1" fill="#CBD5E1" />
+          <rect x="2" y="2" width="6" height="9" fill="#E5E7EB" />
+          <rect x="3" y="3" width="4" height="7" fill="#0D0D0D" />
+          <rect class="battery-blink" x="3" y="4" width="4" height="2" fill="#9EF01A" />
+          <rect x="3" y="7" width="4" height="2" fill="#9EF01A" />
+        </svg>
+      </button>
+
+      <!-- Bottom-Left: Mini Pixel SD Memory Card & Star -->
+      <button type="button" aria-label="Click bouncing pixel SD card"
+        class="pixel-prop-btn star-twinkle-alt bottom-24 left-5">
+        <svg class="w-10 h-11 drop-shadow-[3px_3px_0_#000]" viewBox="0 0 10 12" fill="none"
+          xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+          <rect x="3" y="1" width="6" height="10" fill="#3A86FF" />
+          <rect x="2" y="3" width="7" height="8" fill="#1D4ED8" />
+          <rect x="3" y="2" width="1" height="2" fill="#FFD60A" />
+          <rect x="5" y="2" width="1" height="2" fill="#FFD60A" />
+          <rect x="7" y="2" width="1" height="2" fill="#FFD60A" />
+          <rect x="3" y="5" width="5" height="4" fill="#FFFFFF" />
+          <rect x="4" y="6" width="3" height="2" fill="#FF006E" />
+        </svg>
+      </button>
+
+      <!-- Top-Right: Floating 35mm Film Roll Canister -->
+      <button type="button" aria-label="Click floating 35mm pixel film roll"
+        class="pixel-prop-btn pixel-float-slow top-28 right-5">
+        <svg class="w-12 h-12 drop-shadow-[3px_3px_0_#000]" viewBox="0 0 12 12" fill="none"
+          xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+          <rect x="3" y="1" width="6" height="2" fill="#FFD60A" />
+          <rect x="2" y="3" width="8" height="8" fill="#1C1C1C" />
+          <rect x="2" y="4" width="6" height="6" fill="#FFD60A" />
+          <rect x="4" y="5" width="2" height="4" fill="#FF006E" />
+          <rect x="9" y="5" width="2" height="4" fill="#94A3B8" />
+        </svg>
+      </button>
+
+      <!-- Mid-Right: Floating Pixel Prime Lens -->
+      <button type="button" aria-label="Click floating pixel camera lens"
+        class="pixel-prop-btn pixel-float-alt top-[56%] right-5">
+        <svg class="w-12 h-12 drop-shadow-[3px_3px_0_#000]" viewBox="0 0 12 12" fill="none"
+          xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+          <rect x="3" y="1" width="6" height="10" fill="#475569" />
+          <rect x="1" y="3" width="10" height="6" fill="#334155" />
+          <rect x="2" y="2" width="8" height="8" fill="#1E293B" />
+          <rect x="3" y="3" width="6" height="6" fill="#0D0D0D" />
+          <rect x="4" y="4" width="4" height="4" fill="#3A86FF" />
+          <rect x="5" y="4" width="2" height="1" fill="#FFFFFF" />
+          <rect x="6" y="6" width="2" height="1" fill="#FF006E" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Top Navigation Header -->
+  <header class="relative z-10 border-b-4 border-[#262626] bg-[#121212]">
+    <nav aria-label="Photography archive navigation" class="top-nav-row mx-auto max-w-6xl px-4 py-3.5 sm:px-6">
+      <a href="./index.html?skipIntro=1"
+        class="pixel-btn btn-gold bg-[#FFD60A] text-[#0D0D0D] hover:bg-[#FFE347] text-xs sm:text-sm">
+        <span aria-hidden="true">&#9668;</span>
+        <span>BACK TO DEV PORTFOLIO</span>
+      </a>
+
+      <div class="flex items-center gap-2.5">
+        <span
+          class="hidden sm:inline-flex items-center gap-1.5 border-2 border-[#9EF01A] bg-[#0B160D] px-2.5 py-1 font-pixel-ui text-[10px] font-bold text-[#9EF01A]">
+          PIXEL VIEWFINDER
+        </span>
+        <button id="sfx-toggle-btn" type="button" aria-pressed="true"
+          class="pixel-btn pixel-btn-mini btn-dark bg-[#0D0D0D] text-[#FFD60A] border-white hover:bg-[#1C1C1C]">
+          SFX: ON
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="relative z-10 flex-1">
+    <!-- Camera LCD Header & Interactive Category Filters -->
+    <section aria-labelledby="heading-photo-archive" class="mx-auto max-w-6xl px-4 pt-8 pb-6 sm:px-6 sm:pt-12">
+      <div class="camera-lcd-header p-5 sm:p-8">
+        <div class="relative z-10">
+          <!-- Telemetry HUD Row -->
+          <div class="flex flex-wrap items-center justify-between gap-3 border-b-2 border-[#1F3F27] pb-4">
+            <div class="flex flex-wrap items-center gap-2.5">
+              <span
+                class="btn-pink inline-flex items-center gap-2 border-2 border-black bg-[#D1005B] px-2.5 py-1 font-pixel-ui text-xs font-bold text-white shadow-[2px_2px_0_#000]">
+                <span>REC</span>
+                <span class="rec-indicator-dot" aria-hidden="true"></span>
+              </span>
+              <span
+                class="border-2 border-[#9EF01A] bg-[#122619] px-2.5 py-1 font-pixel-ui text-xs font-bold text-[#9EF01A]">
+                RAW // 35MM
+              </span>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2 font-pixel-ui text-[11px] text-[#D4E8D4]">
+              <span class="border border-[#2E5938] bg-[#071109] px-2.5 py-1">ISO 400 // F/2.8</span>
+              <span id="shot-count-label" class="border border-[#FFD60A] bg-[#071109] px-2.5 py-1 text-[#FFD60A]">
+                FRAMES: 09 // ALL SHOTS
+              </span>
+            </div>
+          </div>
+
+          <!-- LCD Main Title -->
+          <div class="mt-5">
+            <p class="font-pixel-ui text-xs text-[#7CC6FE]">
+              AHMAD FAUZI // FIELD OBSERVATION LOG
+            </p>
+            <h1 id="heading-photo-archive"
+              class="mt-2 font-pixel-display text-white leading-snug text-xl sm:text-3xl lg:text-[2.25rem]">
+              VISUAL ARCHIVE // PHOTOGRAPHY
+            </h1>
+            <p class="mt-3 max-w-2xl text-xs sm:text-sm leading-relaxed text-[#D4E8D4]">
+              Selected 35mm frames documenting architecture, highland landscapes, and FIA APRC rally action across North
+              Sumatra. Click any film card to inspect the full frame in Pixel Viewfinder mode.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Category Filter Buttons -->
+      <div class="mt-7 flex flex-wrap items-center justify-between gap-4">
+        <div role="group" aria-label="Filter photography archive by category" class="flex flex-wrap gap-2.5">
+          <button type="button" data-filter="all" aria-pressed="true"
+            class="pixel-btn btn-pink bg-[#D1005B] text-white text-xs sm:text-sm">
+            [ ALL SHOTS ]
+          </button>
+          <button type="button" data-filter="street" aria-pressed="false"
+            class="pixel-btn btn-slate bg-[#1C1C1C] text-[#E5E7EB] border-[#4B5563] text-xs sm:text-sm">
+            [ STREET ]
+          </button>
+          <button type="button" data-filter="nature" aria-pressed="false"
+            class="pixel-btn btn-slate bg-[#1C1C1C] text-[#E5E7EB] border-[#4B5563] text-xs sm:text-sm">
+            [ NATURE &amp; LANDSCAPE ]
+          </button>
+          <button type="button" data-filter="motorsport" aria-pressed="false"
+            class="pixel-btn btn-slate bg-[#1C1C1C] text-[#E5E7EB] border-[#4B5563] text-xs sm:text-sm">
+            [ MOTORSPORT ]
+          </button>
+        </div>
+
+        <p class="font-pixel-ui text-xs text-[#B8C4D4]">
+          HOVER CARD FOR RETICLE // CLICK FOR LIGHTBOX
+        </p>
+      </div>
+    </section>
+
+    <!-- Film-Frame Photo Grid (1 col mobile, 2 cols tablet, 3 cols desktop) -->
+    <section id="gallery-section" aria-label="Photography gallery grid"
+      class="mx-auto max-w-6xl px-4 pb-16 sm:px-6 sm:pb-20">
+      <div id="gallery-grid" class="gallery-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Slots rendered cleanly in DOM and bound to lightbox/filter controls by script -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Minimal Retro Footer with Safe Floating Button Clearance -->
+  <footer class="relative z-10 border-t-4 border-[#9EF01A] bg-[#0B160D] pt-8 pb-20 sm:pb-20">
+    <div class="mx-auto flex max-w-6xl flex-col sm:flex-row items-center justify-between gap-4 px-4 sm:px-6 text-xs">
+      <p class="font-pixel-ui text-[#D4E8D4]">
+        PIXEL VIEWFINDER // PHOTO ARCHIVE // BOGOR, INDONESIA
+      </p>
+      <div class="flex flex-wrap items-center gap-4">
+        <a href="./index.html?skipIntro=1"
+          class="font-pixel-ui text-[#9EF01A] underline underline-offset-4 hover:text-white">
+          &#9668; BACK TO DEV PORTFOLIO
+        </a>
+        <a href="#heading-photo-archive" data-photo-warp-top
+          class="font-pixel-ui text-[#FFD60A] underline underline-offset-4 hover:text-white">
+          BACK TO TOP
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Quick-Ascend Pixel Back To Top Button -->
+  <button id="photo-back-to-top" type="button" data-photo-warp-top aria-label="Scroll back to top of Photography Archive"
+    class="pixel-btn floating-back-to-top bg-[#0D0D0D] text-[#9EF01A] border-[#9EF01A] px-3 py-2 text-xs">
+    <span aria-hidden="true">&#9650;</span>
+    <span>BACK TO TOP</span>
+  </button>
+
+  <!-- Fullscreen Lightbox Viewfinder Dialog (<dialog> supports Esc and focus trapping natively) -->
+  <dialog id="lightbox-dialog" aria-labelledby="lb-title" class="lightbox-dialog">
+    <div
+      class="border-b-4 border-white bg-[#0D0D0D] px-4 py-3 sm:px-5 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex flex-wrap items-center gap-2.5">
+        <span id="lb-slot-tag"
+          class="border-2 border-black bg-[#FFD60A] px-2.5 py-0.5 font-pixel-ui text-xs font-bold text-[#0D0D0D]">
+          SLOT 01 / 09
+        </span>
+        <span class="font-pixel-ui text-xs text-[#9EF01A]">PIXEL VIEWFINDER</span>
+      </div>
+      <button id="lb-close-btn" type="button" aria-label="Close lightbox viewer"
+        class="pixel-btn pixel-btn-mini bg-[#D1005B] text-white border-white">
+        CLOSE [ESC]
+      </button>
+    </div>
+
+    <div class="flex flex-col md:flex-row items-stretch max-h-[calc(95vh-118px)] overflow-y-auto bg-[#0D0D0D]">
+      <!-- Flexible Proportional Image Display Frame (Fits portrait tightly & caps landscape at 55%) -->
+      <div id="lb-stage"
+        class="lightbox-stage w-fit max-w-full md:max-w-[55%] mx-auto md:mx-0 shrink-0 bg-black border-2 border-zinc-800 flex items-center justify-center p-2 sm:p-3">
+        <div id="lb-placeholder" class="flex flex-col items-center justify-center gap-3 p-6 text-center">
+          <svg width="64" height="54" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg"
+            shape-rendering="crispEdges" aria-hidden="true">
+            <rect x="5" y="1" width="6" height="2" fill="#FFD60A" />
+            <rect x="1" y="3" width="14" height="10" fill="#1C3823" />
+            <rect x="2" y="4" width="12" height="8" fill="#0D0D0D" />
+            <rect x="5" y="5" width="6" height="6" fill="#9EF01A" />
+            <rect x="6" y="6" width="4" height="4" fill="#081C15" />
+            <rect x="7" y="7" width="2" height="2" fill="#FF006E" />
+            <rect x="11" y="5" width="2" height="1" fill="#FFD60A" />
+          </svg>
+          <p id="lb-placeholder-label" class="font-pixel-ui text-xs sm:text-sm font-bold text-[#9EF01A]">
+            LOADING VIEWFINDER FRAME...
+          </p>
+          <p id="lb-placeholder-file" class="font-mono-body text-xs text-[#B8C4D4]">
+            ./photography/kuil.jpeg
+          </p>
+        </div>
+
+        <img id="lb-image" src="" alt="" hidden
+          class="object-contain max-h-[75vh] w-auto max-w-full block border-2 border-white shadow-[4px_4px_0_#000]" />
+      </div>
+
+      <!-- Shot Story & Telemetry Sidebar -->
+      <div class="flex-1 min-w-0 bg-[#151515] p-5 sm:p-6 flex flex-col justify-between gap-5">
+        <div>
+          <div class="flex flex-wrap gap-2">
+            <span id="lb-category"
+              class="border-2 border-black bg-[#D1005B] px-2.5 py-0.5 font-pixel-ui text-xs font-bold text-white">
+              STREET
+            </span>
+            <span id="lb-location"
+              class="border border-[#7CC6FE] bg-[#0D0D0D] px-2.5 py-0.5 font-pixel-ui text-xs text-[#7CC6FE]">
+              Bogor, ID
+            </span>
+          </div>
+
+          <h2 id="lb-title" class="mt-4 font-pixel-ui text-lg sm:text-xl font-bold text-white leading-snug"></h2>
+          <p id="lb-exif" class="mt-2 font-mono-body text-xs text-[#FFD60A]"></p>
+
+          <div class="mt-4 border-t-2 border-[#2A2A2A] pt-4">
+            <p class="font-pixel-ui text-xs text-[#9EF01A]">FIELD NOTES</p>
+            <p id="lb-story" class="mt-2 text-sm leading-relaxed text-[#E5E7EB]"></p>
+          </div>
+        </div>
+
+        <p class="border-2 border-[#262626] bg-[#0D0D0D] px-3 py-2 font-pixel-ui text-[10px] text-[#B8C4D4]">
+          KEYS: LEFT / RIGHT ARROWS TO SWITCH // ESC TO CLOSE
+        </p>
+      </div>
+    </div>
+
+    <!-- Bottom Prev / Next Bar -->
+    <div class="border-t-4 border-[#262626] bg-[#0D0D0D] px-4 py-3 sm:px-5 flex items-center justify-between gap-3">
+      <button id="lb-prev-btn" type="button" class="pixel-btn bg-[#1C1C1C] text-white border-white text-xs sm:text-sm">
+        <span aria-hidden="true">&#9668;</span>
+        <span>PREV</span>
+      </button>
+
+      <span id="lb-counter" class="font-pixel-ui text-xs text-[#FFD60A]">01 / 09</span>
+
+      <button id="lb-next-btn" type="button" class="pixel-btn bg-[#9EF01A] text-[#081C15] text-xs sm:text-sm">
+        <span>NEXT</span>
+        <span aria-hidden="true">&#9658;</span>
+      </button>
+    </div>
+  </dialog>
+
+  <script>
+    (() => {
+      const announcer = document.getElementById("polite-announcer");
+      function announce(msg) {
+        if (!announcer) return;
+        announcer.textContent = "";
+        window.setTimeout(() => {
+          announcer.textContent = msg;
+        }, 20);
+      }
+
+      // Web Audio API 8-bit synthesizer (boosted master bus: osc + white-noise camera FX)
+      const SoundFX = {
+        ctx: null,
+        compressor: null,
+        oscMaster: null,
+        noiseMaster: null,
+        oscMasterGainValue: 0.55,
+        noiseMasterGainValue: 0.8,
+        lastFocusAt: 0,
+        enabled: true,
+
+        ensureContext() {
+          if (!this.enabled) return null;
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          if (!AudioCtx) return null;
+          if (!this.ctx) {
+            this.ctx = new AudioCtx();
+            this.compressor = this.ctx.createDynamicsCompressor();
+            this.compressor.threshold.setValueAtTime(-6, this.ctx.currentTime);
+            this.compressor.knee.setValueAtTime(10, this.ctx.currentTime);
+            this.compressor.ratio.setValueAtTime(6, this.ctx.currentTime);
+            this.compressor.attack.setValueAtTime(0.002, this.ctx.currentTime);
+            this.compressor.release.setValueAtTime(0.12, this.ctx.currentTime);
+            this.compressor.connect(this.ctx.destination);
+
+            this.oscMaster = this.ctx.createGain();
+            this.oscMaster.gain.setValueAtTime(this.oscMasterGainValue, this.ctx.currentTime);
+            this.oscMaster.connect(this.compressor);
+
+            this.noiseMaster = this.ctx.createGain();
+            this.noiseMaster.gain.setValueAtTime(this.noiseMasterGainValue, this.ctx.currentTime);
+            this.noiseMaster.connect(this.compressor);
+          }
+          if (this.ctx.state === "suspended") {
+            this.ctx.resume().catch(() => { });
+          }
+          return this.ctx;
+        },
+
+        playTone(freqStart, freqEnd, durationSec, type = "square", delaySec = 0, peakGain = 0.065) {
+          const ctx = this.ensureContext();
+          if (!ctx) return;
+
+          const startAt = ctx.currentTime + delaySec;
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          const boostedGain = Math.min(0.95, Math.max(0.28, peakGain * 6.5));
+
+          osc.type = type;
+          osc.frequency.setValueAtTime(freqStart, startAt);
+          if (freqEnd !== freqStart) {
+            osc.frequency.exponentialRampToValueAtTime(Math.max(freqEnd, 40), startAt + durationSec);
+          }
+
+          gain.gain.setValueAtTime(0.0001, startAt);
+          gain.gain.linearRampToValueAtTime(boostedGain, startAt + 0.008);
+          gain.gain.exponentialRampToValueAtTime(0.0001, startAt + durationSec);
+
+          osc.connect(gain);
+          gain.connect(this.oscMaster || ctx.destination);
+          osc.start(startAt);
+          osc.stop(startAt + durationSec + 0.02);
+        },
+
+        createNoiseBuffer(ctx, durationSec) {
+          const sampleCount = Math.max(1, Math.floor(ctx.sampleRate * durationSec));
+          const buffer = ctx.createBuffer(1, sampleCount, ctx.sampleRate);
+          const data = buffer.getChannelData(0);
+          for (let i = 0; i < sampleCount; i += 1) {
+            data[i] = Math.random() * 2 - 1;
+          }
+          return buffer;
+        },
+
+        playBlip() {
+          this.playTone(620, 920, 0.055, "square", 0, 0.075);
+        },
+
+        playFocusBeep() {
+          // Crisp autofocus camera beep-beep on card hover
+          if (!this.enabled) return;
+          const now = Date.now();
+          if (now - this.lastFocusAt < 110) return;
+          this.lastFocusAt = now;
+          this.playTone(1720, 1720, 0.026, "square", 0, 0.055);
+          this.playTone(2180, 2180, 0.032, "square", 0.034, 0.06);
+        },
+
+        playCameraShutter() {
+          // Sharp mechanical retro shutter ("set-klik!") boosted via noiseMaster
+          const ctx = this.ensureContext();
+          if (!ctx) return;
+
+          const t0 = ctx.currentTime;
+
+          // Curtain release 1 ("set!"): ~35ms high-bandpass white/pink noise burst (2500Hz–4000Hz)
+          const curtainSrc = ctx.createBufferSource();
+          curtainSrc.buffer = this.createNoiseBuffer(ctx, 0.036);
+          const curtainFilter = ctx.createBiquadFilter();
+          curtainFilter.type = "bandpass";
+          curtainFilter.Q.value = 1.6;
+          curtainFilter.frequency.setValueAtTime(3600, t0);
+          curtainFilter.frequency.exponentialRampToValueAtTime(2600, t0 + 0.035);
+
+          const curtainGain = ctx.createGain();
+          curtainGain.gain.setValueAtTime(0.001, t0);
+          curtainGain.gain.linearRampToValueAtTime(0.82, t0 + 0.004);
+          curtainGain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.035);
+
+          curtainSrc.connect(curtainFilter);
+          curtainFilter.connect(curtainGain);
+          curtainGain.connect(this.noiseMaster || ctx.destination);
+          curtainSrc.start(t0);
+          curtainSrc.stop(t0 + 0.038);
+
+          // Mirror return / second click ("klik!"): after 45ms delay, ~50ms crisp 1800Hz click
+          const t1 = t0 + 0.045;
+          const clickSrc = ctx.createBufferSource();
+          clickSrc.buffer = this.createNoiseBuffer(ctx, 0.05);
+          const clickFilter = ctx.createBiquadFilter();
+          clickFilter.type = "bandpass";
+          clickFilter.Q.value = 3.2;
+          clickFilter.frequency.setValueAtTime(1800, t1);
+
+          const clickGain = ctx.createGain();
+          clickGain.gain.setValueAtTime(0.001, t1);
+          clickGain.gain.linearRampToValueAtTime(0.85, t1 + 0.003);
+          clickGain.gain.exponentialRampToValueAtTime(0.0001, t1 + 0.05);
+
+          clickSrc.connect(clickFilter);
+          clickFilter.connect(clickGain);
+          clickGain.connect(this.noiseMaster || ctx.destination);
+          clickSrc.start(t1);
+          clickSrc.stop(t1 + 0.052);
+
+          // Crisp mechanical ping backing the 1800Hz shutter click
+          this.playTone(1800, 760, 0.048, "square", 0.045, 0.085);
+        },
+
+        playPhotoSlide() {
+          // Photo paper / film card slide sound ("ssshh-slap!") on PREV / NEXT
+          const ctx = this.ensureContext();
+          if (!ctx) return;
+
+          const now = ctx.currentTime;
+          const slideSrc = ctx.createBufferSource();
+          slideSrc.buffer = this.createNoiseBuffer(ctx, 0.145);
+
+          // Bandpass frequency sweep: 800Hz -> 2400Hz -> 900Hz
+          const sweepFilter = ctx.createBiquadFilter();
+          sweepFilter.type = "bandpass";
+          sweepFilter.Q.value = 1.3;
+          sweepFilter.frequency.setValueAtTime(800, now);
+          sweepFilter.frequency.exponentialRampToValueAtTime(2400, now + 0.068);
+          sweepFilter.frequency.exponentialRampToValueAtTime(900, now + 0.14);
+
+          const slideGain = ctx.createGain();
+          slideGain.gain.setValueAtTime(0.001, now);
+          slideGain.gain.linearRampToValueAtTime(0.76, now + 0.022);
+          slideGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.14);
+
+          slideSrc.connect(sweepFilter);
+          sweepFilter.connect(slideGain);
+          slideGain.connect(this.noiseMaster || ctx.destination);
+          slideSrc.start(now);
+          slideSrc.stop(now + 0.145);
+
+          // Crisp card-tap at end of slide (~105ms)
+          this.playTone(460, 190, 0.032, "triangle", 0.105, 0.075);
+        },
+
+        playWarpUp() {
+          // Retro upward "whoosh-blip!" ascending sweep + crisp arpeggio
+          this.playTone(320, 1280, 0.22, "triangle", 0, 0.075);
+          [523.25, 659.25, 783.99, 1046.5, 1318.51].forEach((freq, i) => {
+            this.playTone(freq, freq * 1.03, 0.075, "square", i * 0.045, 0.075);
+          });
+        },
+
+        playTeleportWarp() {
+          // Crisp 8-bit teleport chime for cross-page Pixel Block Mosaic Wipe
+          const notes = [440, 587.33, 783.99, 1046.5, 1567.98];
+          notes.forEach((f, i) => {
+            this.playTone(f, f * 1.18, i === notes.length - 1 ? 0.16 : 0.055, i % 2 === 0 ? "square" : "triangle", i * 0.045, 0.085);
+          });
+        }
+      };
+
+      const sfxToggleBtn = document.getElementById("sfx-toggle-btn");
+      if (sfxToggleBtn) {
+        sfxToggleBtn.addEventListener("click", () => {
+          SoundFX.enabled = !SoundFX.enabled;
+          sfxToggleBtn.textContent = SoundFX.enabled ? "SFX: ON" : "SFX: OFF";
+          sfxToggleBtn.setAttribute("aria-pressed", String(SoundFX.enabled));
+          if (SoundFX.enabled) SoundFX.playBlip();
+          announce(SoundFX.enabled ? "8-bit camera sound enabled." : "8-bit camera sound muted.");
+        });
+      }
+
+      // 9 Verified Photo Archive Slots (All 9 active frames loaded from ./photography/)
+      const photoSlots = [
+        {
+          slot: "01",
+          src: "./photography/kuil.jpeg",
+          filename: "kuil.jpeg",
+          category: "street",
+          categoryLabel: "STREET",
+          title: "VIHARA SETIA BUDI",
+          location: "Medan, North Sumatra",
+          exif: "35MM // DAYLIGHT // LOW-ANGLE",
+          story: "Low-angle architectural shot of Vihara Setia Budi in Medan, capturing the repeating curved pagoda tiers in vibrant red, gold, and sky-blue tones framed by natural foreground foliage under bright daylight."
+        },
+        {
+          slot: "02",
+          src: "./photography/citylightmedan.jpeg",
+          filename: "citylightmedan.jpeg",
+          category: "street",
+          categoryLabel: "STREET",
+          title: "CITY LIGHTS OF MEDAN",
+          location: "Lapangan Merdeka, Medan",
+          exif: "35MM // NIGHT SHOT // URBAN CONTRAST",
+          story: "Night street and architectural shot contrasting the warm-lit historic Medan Post Office building in the foreground against modern illuminated skyscrapers under the dark night sky."
+        },
+        {
+          slot: "03",
+          src: "./photography/sabana.jpeg",
+          filename: "sabana.jpeg",
+          category: "nature",
+          categoryLabel: "NATURE & LANDSCAPE",
+          title: "HIGHLANDS OF LAKE TOBA",
+          location: "Danau Toba, North Sumatra",
+          exif: "35MM // DAYLIGHT // LANDSCAPE",
+          story: "Scenic landscape photograph of rolling green savanna hills around Lake Toba framed by pine foliage in the foreground and towering cumulus clouds under a crisp blue sky."
+        },
+        {
+          slot: "04",
+          src: "./photography/viewdanau.jpeg",
+          filename: "viewdanau.jpeg",
+          category: "nature",
+          categoryLabel: "NATURE & LANDSCAPE",
+          title: "LAKEFRONT & MISTY PEAKS",
+          location: "Danau Toba, North Sumatra",
+          exif: "35MM // DAYLIGHT // LAYERED VIEW",
+          story: "Layered lakeside landscape composition featuring the diagonal concrete embankment in the foreground, calm waters in the midground, and cloud-draped green mountains rising in the distance."
+        },
+        {
+          slot: "05",
+          src: "./photography/tanoponggol.jpeg",
+          filename: "tanoponggol.jpeg",
+          category: "nature",
+          categoryLabel: "NATURE & LANDSCAPE",
+          title: "TANO PONGGOL CANAL CURVE",
+          location: "Tano Ponggol, Samosir – North Sumatra",
+          exif: "35MM // DAYLIGHT // LEADING LINES",
+          story: "Wide elevated perspective of the Tano Ponggol canal curve in Lake Toba, using the sweeping white-and-red embankment as a strong leading line toward the deep blue waters and distant mountain ridges."
+        },
+        {
+          slot: "06",
+          src: "./photography/rallyhyundai.jpeg",
+          filename: "rallyhyundai.jpeg",
+          category: "motorsport",
+          categoryLabel: "MOTORSPORT",
+          title: "HYUNDAI RALLY SPEC // FIA APRC",
+          location: "Sumatera Utara, Indonesia",
+          exif: "35MM // FAST SHUTTER // FIA APRC SUMUT",
+          story: "High-speed motorsport action shot capturing a Hyundai rally machine tearing through the gravel stage during the FIA Asia-Pacific Rally Championship (APRC) in North Sumatra."
+        },
+        {
+          slot: "07",
+          src: "./photography/rallyskoda.jpeg",
+          filename: "rallyskoda.jpeg",
+          category: "motorsport",
+          categoryLabel: "MOTORSPORT",
+          title: "SKODA RALLY STAGE // FIA APRC",
+          location: "Sumatera Utara, Indonesia",
+          exif: "35MM // ACTION PANNING // FIA APRC SUMUT",
+          story: "Dynamic trackside capture of a Skoda rally car kicking up dust and gravel on a technical corner at the FIA APRC North Sumatra rally event."
+        },
+        {
+          slot: "08",
+          src: "./photography/rallysubaru.jpeg",
+          filename: "rallysubaru.jpeg",
+          category: "motorsport",
+          categoryLabel: "MOTORSPORT",
+          title: "SUBARU RALLY LEGACY // FIA APRC",
+          location: "Sumatera Utara, Indonesia",
+          exif: "35MM // DIRT STAGE // FIA APRC SUMUT",
+          story: "Trackside rally photography featuring a Subaru rally car charging across the rugged dirt terrain of the FIA Asia-Pacific Rally Championship in North Sumatra."
+        },
+        {
+          slot: "09",
+          src: "./photography/rallyyaris.jpeg",
+          filename: "rallyyaris.jpeg",
+          category: "motorsport",
+          categoryLabel: "MOTORSPORT",
+          title: "TOYOTA YARIS RALLY // FIA APRC",
+          location: "Sumatera Utara, Indonesia",
+          exif: "35MM // HIGH SPEED // FIA APRC SUMUT",
+          story: "Crisp action frame of a Toyota Yaris rally contender navigating the high-intensity special stage during the FIA APRC Sumatera Utara."
+        }
+      ];
+
+      const galleryGrid = document.getElementById("gallery-grid");
+      const filterBtns = Array.from(document.querySelectorAll("[data-filter]"));
+      const shotCountLabel = document.getElementById("shot-count-label");
+      const loadedMap = new Map();
+      const cardElements = [];
+
+      const categoryNames = {
+        all: "ALL SHOTS",
+        street: "STREET",
+        nature: "NATURE & LANDSCAPE",
+        motorsport: "MOTORSPORT"
+      };
+
+      function buildGalleryCards() {
+        if (!galleryGrid) return;
+        galleryGrid.innerHTML = "";
+
+        photoSlots.forEach((shot, index) => {
+          const article = document.createElement("article");
+          article.className = "film-card";
+          article.setAttribute("data-category", shot.category);
+          article.setAttribute("data-slot", shot.slot);
+
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "film-trigger";
+          btn.setAttribute("data-open-shot", String(index));
+          btn.setAttribute("aria-label", `Inspect ${shot.title} (${shot.location})`);
+
+          // Top Sprocket Header
+          const sprocketBar = document.createElement("div");
+          sprocketBar.className = "flex items-center justify-between gap-2 border-b-2 border-[#262626] bg-[#101010] px-3 py-2";
+          sprocketBar.innerHTML = `
+            <span class="font-pixel-ui text-[11px] font-bold text-[#9EF01A]">FRAME #${shot.slot}</span>
+            <span class="font-pixel-ui text-[10px] text-[#B8C4D4]">${shot.categoryLabel}</span>
+          `;
+
+          // Viewport with Retro Camera Placeholder + Local Image + Hover Viewfinder Crosshairs
+          const viewport = document.createElement("div");
+          viewport.className = "film-viewport";
+
+          const placeholder = document.createElement("div");
+          placeholder.className = "slot-placeholder";
+          placeholder.innerHTML = `
+            <svg width="46" height="38" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" aria-hidden="true">
+              <rect x="5" y="1" width="6" height="2" fill="#FFD60A" />
+              <rect x="1" y="3" width="14" height="10" fill="#1C3823" />
+              <rect x="2" y="4" width="12" height="8" fill="#0D0D0D" />
+              <rect x="5" y="5" width="6" height="6" fill="#9EF01A" />
+              <rect x="6" y="6" width="4" height="4" fill="#081C15" />
+              <rect x="7" y="7" width="2" height="2" fill="#FF006E" />
+              <rect x="11" y="5" width="2" height="1" fill="#FFD60A" />
+            </svg>
+            <span class="border-2 border-[#9EF01A] bg-[#0B160D] px-2.5 py-1 font-pixel-ui text-[11px] font-bold text-[#9EF01A]">
+              FRAME ${shot.slot} // SIGNAL UNAVAILABLE
+            </span>
+            <span class="font-mono-body text-[11px] text-[#B8C4D4]">
+              ${shot.filename}
+            </span>
+          `;
+
+          const img = document.createElement("img");
+          img.src = shot.src;
+          img.alt = `${shot.title} — ${shot.location}`;
+          img.className = "photo-img object-cover object-center";
+          img.loading = "eager";
+
+          function handleImgLoaded() {
+            if (img.naturalWidth > 0) {
+              loadedMap.set(shot.slot, true);
+              img.classList.add("is-loaded");
+              img.hidden = false;
+              placeholder.hidden = true;
+            }
+          }
+
+          function handleImgError() {
+            loadedMap.set(shot.slot, false);
+            img.hidden = true;
+            img.classList.remove("is-loaded");
+            placeholder.hidden = false;
+          }
+
+          img.addEventListener("load", handleImgLoaded);
+          img.addEventListener("error", handleImgError);
+          if (img.complete) {
+            if (img.naturalWidth > 0) {
+              handleImgLoaded();
+            } else {
+              handleImgError();
+            }
+          }
+
+          const vfOverlay = document.createElement("div");
+          vfOverlay.className = "vf-overlay";
+          vfOverlay.setAttribute("aria-hidden", "true");
+          vfOverlay.innerHTML = `
+            <span class="vf-corner vf-tl">[ + ]</span>
+            <span class="vf-corner vf-tr">[ + ]</span>
+            <span class="vf-center-reticle">[ + ]</span>
+            <span class="vf-corner vf-bl">[ + ]</span>
+            <span class="vf-corner vf-br">[ + ]</span>
+          `;
+
+          viewport.appendChild(placeholder);
+          viewport.appendChild(img);
+          viewport.appendChild(vfOverlay);
+
+          // Card Footer Metadata Badges
+          const footer = document.createElement("div");
+          footer.className = "flex flex-1 flex-col justify-between gap-3 p-4";
+          footer.innerHTML = `
+            <h2 class="font-pixel-ui text-sm sm:text-base font-bold text-white leading-snug">
+              ${shot.title}
+            </h2>
+            <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t-2 border-[#262626]">
+              <span class="inline-flex items-center gap-1.5 border border-[#7CC6FE] bg-[#0D0D0D] px-2 py-0.5 font-pixel-ui text-[10px] text-[#7CC6FE]">
+                <svg width="10" height="12" viewBox="0 0 10 12" fill="currentColor" aria-hidden="true">
+                  <rect x="2" y="1" width="6" height="6" />
+                  <rect x="4" y="3" width="2" height="2" fill="#0D0D0D" />
+                  <rect x="3" y="7" width="4" height="2" />
+                  <rect x="4" y="9" width="2" height="2" />
+                </svg>
+                <span>${shot.location}</span>
+              </span>
+              <span class="border border-[#000000] bg-[#FFD60A] px-2 py-0.5 font-pixel-ui text-[10px] font-bold text-[#0D0D0D]">
+                ${shot.categoryLabel}
+              </span>
+            </div>
+          `;
+
+          btn.appendChild(sprocketBar);
+          btn.appendChild(viewport);
+          btn.appendChild(footer);
+
+          article.addEventListener("pointerenter", (event) => {
+            if (event.pointerType === "mouse") SoundFX.playFocusBeep();
+          });
+          btn.addEventListener("click", () => openLightbox(index));
+          article.appendChild(btn);
+          galleryGrid.appendChild(article);
+          cardElements.push(article);
+        });
+
+        triggerGalleryStagger();
+      }
+
+      const cameraFlashOverlay = document.getElementById("camera-flash-overlay");
+      let cameraFlashTimer = null;
+
+      function triggerCameraFlash() {
+        if (!cameraFlashOverlay || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        window.clearTimeout(cameraFlashTimer);
+        cameraFlashOverlay.classList.remove("is-flashing");
+        void cameraFlashOverlay.offsetWidth;
+        cameraFlashOverlay.classList.add("is-flashing");
+        cameraFlashTimer = window.setTimeout(() => {
+          cameraFlashOverlay.classList.remove("is-flashing");
+        }, 280);
+      }
+
+      function triggerGalleryStagger() {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        let visibleIdx = 0;
+        cardElements.forEach((card) => {
+          card.classList.remove("is-card-pop");
+          if (card.hidden) return;
+          void card.offsetWidth;
+          card.style.setProperty("--card-delay", `${Math.min(visibleIdx * 55, 440)}ms`);
+          card.classList.add("is-card-pop");
+          visibleIdx += 1;
+        });
+      }
+
+      // Filter Logic
+      let activeFilter = "all";
+
+      function applyFilter(nextCategory) {
+        activeFilter = nextCategory;
+        filterBtns.forEach((btn) => {
+          const isMatch = btn.getAttribute("data-filter") === activeFilter;
+          btn.setAttribute("aria-pressed", String(isMatch));
+          if (isMatch) {
+            btn.classList.remove("btn-slate", "bg-[#1C1C1C]", "text-[#E5E7EB]", "border-[#4B5563]");
+            btn.classList.add("btn-pink", "bg-[#D1005B]", "text-white", "border-black");
+          } else {
+            btn.classList.remove("btn-pink", "bg-[#D1005B]", "text-white", "border-black");
+            btn.classList.add("btn-slate", "bg-[#1C1C1C]", "text-[#E5E7EB]", "border-[#4B5563]");
+          }
+        });
+
+        let visibleCount = 0;
+        cardElements.forEach((card) => {
+          const match = activeFilter === "all" || card.getAttribute("data-category") === activeFilter;
+          card.hidden = !match;
+          if (match) visibleCount += 1;
+        });
+
+        triggerGalleryStagger();
+
+        if (shotCountLabel) {
+          const padded = String(visibleCount).padStart(2, "0");
+          shotCountLabel.textContent = `FRAMES: ${padded} // ${categoryNames[activeFilter] || "ALL SHOTS"}`;
+        }
+        announce(`Showing ${visibleCount} photography slots for ${categoryNames[activeFilter] || "all shots"}.`);
+      }
+
+      filterBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          SoundFX.playBlip();
+          applyFilter(btn.getAttribute("data-filter") || "all");
+        });
+      });
+
+      // Lightbox Dialog State & Controls
+      const lightboxDialog = document.getElementById("lightbox-dialog");
+      const lbCloseBtn = document.getElementById("lb-close-btn");
+      const lbPrevBtn = document.getElementById("lb-prev-btn");
+      const lbNextBtn = document.getElementById("lb-next-btn");
+      const lbSlotTag = document.getElementById("lb-slot-tag");
+      const lbTitle = document.getElementById("lb-title");
+      const lbCategory = document.getElementById("lb-category");
+      const lbLocation = document.getElementById("lb-location");
+      const lbExif = document.getElementById("lb-exif");
+      const lbStory = document.getElementById("lb-story");
+      const lbCounter = document.getElementById("lb-counter");
+      const lbImage = document.getElementById("lb-image");
+      const lbPlaceholder = document.getElementById("lb-placeholder");
+      const lbPlaceholderLabel = document.getElementById("lb-placeholder-label");
+      const lbPlaceholderFile = document.getElementById("lb-placeholder-file");
+
+      let currentIndex = 0;
+      let lastTriggerBtn = null;
+
+      function getFilteredIndices() {
+        const list = [];
+        photoSlots.forEach((slot, idx) => {
+          if (activeFilter === "all" || slot.category === activeFilter) {
+            list.push(idx);
+          }
+        });
+        return list.length ? list : [0];
+      }
+
+      function renderLightbox(index, slideDirection = 0) {
+        const shot = photoSlots[index];
+        if (!shot) return;
+        currentIndex = index;
+
+        const visibleIndices = getFilteredIndices();
+        const pos = Math.max(0, visibleIndices.indexOf(index));
+        const posLabel = `${String(pos + 1).padStart(2, "0")} / ${String(visibleIndices.length).padStart(2, "0")}`;
+
+        if (lbSlotTag) lbSlotTag.textContent = `SLOT ${shot.slot} / ${String(photoSlots.length).padStart(2, "0")}`;
+        if (lbTitle) lbTitle.textContent = shot.title;
+        if (lbCategory) lbCategory.textContent = shot.categoryLabel;
+        if (lbLocation) lbLocation.textContent = shot.location;
+        if (lbExif) lbExif.textContent = shot.exif;
+        if (lbStory) lbStory.textContent = shot.story;
+        if (lbCounter) lbCounter.textContent = posLabel;
+
+        const isImgReady = loadedMap.get(shot.slot) === true;
+        if (isImgReady && lbImage && lbPlaceholder) {
+          lbImage.src = shot.src;
+          lbImage.alt = `${shot.title} — ${shot.location}`;
+          lbImage.hidden = false;
+          lbPlaceholder.hidden = true;
+          lbImage.classList.remove("lb-anim-next", "lb-anim-prev");
+          if (slideDirection !== 0) {
+            void lbImage.offsetWidth;
+            lbImage.classList.add(slideDirection > 0 ? "lb-anim-next" : "lb-anim-prev");
+          }
+        } else if (lbImage && lbPlaceholder) {
+          lbImage.hidden = true;
+          lbPlaceholder.hidden = false;
+          if (lbPlaceholderLabel) {
+            lbPlaceholderLabel.textContent = `FRAME ${shot.slot} // SIGNAL UNAVAILABLE`;
+          }
+          if (lbPlaceholderFile) {
+            lbPlaceholderFile.textContent = `File expected: ${shot.src}`;
+          }
+        }
+      }
+
+      function openLightbox(index) {
+        if (!lightboxDialog) return;
+        lastTriggerBtn = document.querySelector(`[data-open-shot="${index}"]`);
+        SoundFX.playCameraShutter();
+        triggerCameraFlash();
+        renderLightbox(index, 0);
+        if (typeof lightboxDialog.showModal === "function") {
+          lightboxDialog.showModal();
+        } else {
+          lightboxDialog.setAttribute("open", "");
+        }
+        if (lbCloseBtn) lbCloseBtn.focus();
+      }
+
+      function stepLightbox(direction) {
+        const visibleIndices = getFilteredIndices();
+        const currentPos = visibleIndices.indexOf(currentIndex);
+        const startPos = currentPos === -1 ? 0 : currentPos;
+        const nextPos = (startPos + direction + visibleIndices.length) % visibleIndices.length;
+        SoundFX.playPhotoSlide();
+        renderLightbox(visibleIndices[nextPos], direction);
+      }
+
+      if (lbPrevBtn) lbPrevBtn.addEventListener("click", () => stepLightbox(-1));
+      if (lbNextBtn) lbNextBtn.addEventListener("click", () => stepLightbox(1));
+
+      if (lbCloseBtn && lightboxDialog) {
+        lbCloseBtn.addEventListener("click", () => {
+          SoundFX.playBlip();
+          if (typeof lightboxDialog.close === "function") lightboxDialog.close();
+        });
+
+        lightboxDialog.addEventListener("click", (event) => {
+          if (event.target === lightboxDialog && typeof lightboxDialog.close === "function") {
+            lightboxDialog.close();
+          }
+        });
+
+        lightboxDialog.addEventListener("close", () => {
+          if (lastTriggerBtn) lastTriggerBtn.focus();
+        });
+      }
+
+      document.addEventListener("keydown", (event) => {
+        if (!lightboxDialog || !lightboxDialog.open) return;
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          stepLightbox(-1);
+        } else if (event.key === "ArrowRight") {
+          event.preventDefault();
+          stepLightbox(1);
+        }
+      });
+
+      // Pixel Block Mosaic Wipe (outro to index.html?skipIntro=1&fromWarp=1 + reverse dissolve when arriving fromWarp=1)
+      const pixelMosaicWipe = document.getElementById("pixel-mosaic-wipe");
+      let isMosaicWiping = false;
+
+      function populateMosaicGrid() {
+        if (!pixelMosaicWipe) return;
+        const total = 160;
+        const palette = ["#0D0D0D", "#0D0D0D", "#0D0D0D", "#0D0D0D", "#0D0D0D", "#9EF01A", "#FF006E", "#0D0D0D"];
+        const frag = document.createDocumentFragment();
+        for (let i = 0; i < total; i += 1) {
+          const cell = document.createElement("span");
+          cell.className = "mosaic-cell";
+          cell.style.backgroundColor = palette[(i * 5 + Math.floor(Math.random() * 4)) % palette.length];
+          cell.style.setProperty("--cell-delay", `${Math.floor(Math.random() * 270)}ms`);
+          frag.appendChild(cell);
+        }
+        pixelMosaicWipe.innerHTML = "";
+        pixelMosaicWipe.appendChild(frag);
+      }
+
+      (function handlePhotoMosaicArrival() {
+        const params = new URLSearchParams(window.location.search);
+        const fromWarp = params.get("fromWarp") === "1" || document.documentElement.dataset.fromWarp === "1";
+        delete document.documentElement.dataset.fromWarp;
+        document.documentElement.classList.remove("has-mosaic-unwipe");
+
+        if (params.has("fromWarp") && window.history && typeof window.history.replaceState === "function") {
+          params.delete("fromWarp");
+          const nextSearch = params.toString();
+          const cleanUrl = window.location.pathname + (nextSearch ? `?${nextSearch}` : "") + window.location.hash;
+          window.history.replaceState(null, "", cleanUrl);
+        }
+
+        if (!fromWarp || !pixelMosaicWipe || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        populateMosaicGrid();
+        pixelMosaicWipe.classList.remove("is-wiping-out", "is-unwiping");
+        void pixelMosaicWipe.offsetWidth;
+        pixelMosaicWipe.classList.add("is-unwiping");
+        window.setTimeout(() => {
+          pixelMosaicWipe.classList.remove("is-unwiping");
+          pixelMosaicWipe.innerHTML = "";
+        }, 480);
+      })();
+
+      function runPhotoMosaicAndNavigate(targetUrl) {
+        if (isMosaicWiping) return;
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        SoundFX.playTeleportWarp();
+        if (reducedMotion || !pixelMosaicWipe) {
+          window.location.href = targetUrl;
+          return;
+        }
+        isMosaicWiping = true;
+        populateMosaicGrid();
+        pixelMosaicWipe.classList.remove("is-unwiping", "is-wiping-out");
+        void pixelMosaicWipe.offsetWidth;
+        pixelMosaicWipe.classList.add("is-wiping-out");
+        window.setTimeout(() => {
+          window.location.href = targetUrl;
+        }, 460);
+      }
+
+      // Back to dev portfolio link -> 16x10 Pixel Block Mosaic Wipe Outro (~460ms) -> ./index.html?skipIntro=1&fromWarp=1
+      document.querySelectorAll('a[href^="./index.html"]').forEach((link) => {
+        link.addEventListener("click", (event) => {
+          if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+          event.preventDefault();
+          runPhotoMosaicAndNavigate("./index.html?skipIntro=1&fromWarp=1");
+        });
+      });
+
+      document.querySelectorAll(".pixel-prop-btn").forEach((propBtn) => {
+        propBtn.addEventListener("click", () => {
+          SoundFX.playFocusBeep();
+          propBtn.classList.remove("is-prop-boing");
+          void propBtn.offsetWidth;
+          propBtn.classList.add("is-prop-boing");
+          window.setTimeout(() => propBtn.classList.remove("is-prop-boing"), 380);
+        });
+      });
+
+      // Fixed 4px Pixel Scroll Progress Bar & Pixel CRT Warp BACK TO TOP
+      const photoScrollProgressBar = document.getElementById("photo-scroll-progress-bar");
+      const photoCrtWarp = document.getElementById("photo-crt-warp");
+      const photoBackToTop = document.getElementById("photo-back-to-top");
+      let photoWarpTimer = null;
+
+      function syncPhotoScrollHUD() {
+        const currentY = Math.max(window.scrollY || window.pageYOffset || 0, 0);
+        const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+        const ratio = Math.min(Math.max(currentY / maxScroll, 0), 1);
+
+        if (photoScrollProgressBar) {
+          photoScrollProgressBar.style.width = `${(ratio * 100).toFixed(1)}%`;
+        }
+        if (photoBackToTop) {
+          photoBackToTop.classList.toggle("is-visible", currentY > 220);
+        }
+      }
+
+      window.addEventListener("scroll", syncPhotoScrollHUD, { passive: true });
+      syncPhotoScrollHUD();
+
+      function triggerPhotoWarpToTop(event) {
+        if (event) event.preventDefault();
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        SoundFX.playWarpUp();
+
+        if (!reducedMotion && photoCrtWarp) {
+          photoCrtWarp.classList.remove("is-warping");
+          void photoCrtWarp.offsetWidth;
+          photoCrtWarp.classList.add("is-warping");
+          window.clearTimeout(photoWarpTimer);
+          photoWarpTimer = window.setTimeout(() => {
+            photoCrtWarp.classList.remove("is-warping");
+          }, 380);
+        }
+
+        window.scrollTo({ top: 0, behavior: reducedMotion ? "instant" : "smooth" });
+      }
+
+      document.querySelectorAll("[data-photo-warp-top]").forEach((el) => {
+        el.addEventListener("click", triggerPhotoWarpToTop);
+      });
+
+      buildGalleryCards();
+    })();
+  </script>
+</body>
+
+</html>
